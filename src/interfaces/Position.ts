@@ -1,7 +1,7 @@
-import Directions from './Direction';
+import Directions from "./Direction";
 
-export default interface Position {
-  x:number;
-  y:number;
-  direction?:Directions
+export default interface IPosition {
+  x: number;
+  y: number;
+  direction?: Directions;
 }

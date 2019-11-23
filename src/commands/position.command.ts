@@ -1,25 +1,25 @@
-
-import Command from "../interfaces/Command";
-import Rover from "../entities/Rover";
-import { Socket } from 'socket.io';
+import { Socket } from "socket.io";
 import { observe } from "mobx";
+
+import ICommand from "../interfaces/Command";
+import Rover from "../entities/Rover";
 import Logger from "../Logger";
 
-class PositionCommand implements Command {
-  static command_name="position";
-  command_name="position";
-  rover: Rover;
+class PositionCommand implements ICommand {
+  public static commandName: string = "position";
+  public commandName: string = "position";
+  private rover: Rover;
 
-  constructor(rover:Rover) {
+  constructor(rover: Rover) {
     this.rover = rover;
     observe(rover.position, (change) => {
-      Logger.debug('updated position', {change})
-      rover.io.sockets.emit('position_update', change.object);
+      Logger.debug("updated position", {change});
+      rover.io.sockets.emit("position_update", change.object);
     });
   }
-  exec(msg:any, socket?:Socket, callback?: Function ) {
-    const {rover} = this;
+  public exec(msg: any, socket?: Socket, callback?: Function ) {
     if (!callback) return;
+    const {rover} = this;
     callback(rover.position);
   }
 }

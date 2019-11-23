@@ -250,8 +250,8 @@ const direction_movements = [[0, -1], [1, 0], [0, 1], [-1, 0]];
 &nbsp;
 class MoveCommand implements Command{
   rover:Rover;
-  static command_name='move';
-  command_name='move';
+  static commandName='move';
+  commandName='move';
   
   constructor(rover:Rover) {
     this.rover = rover;

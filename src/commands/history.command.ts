@@ -1,22 +1,26 @@
 
-import Command from '../interfaces/Command';
-import Rover from '../entities/Rover';
-import { Socket } from 'socket.io';
-import CommandResponse from '../interfaces/CommandResponse';
-import { observe } from 'mobx';
+import { observe } from "mobx";
+import { Socket } from "socket.io";
 
-class HistoryCommand implements Command {
-  rover: Rover;
-  static command_name="history";
-  command_name="history";
+import ICommand from "../interfaces/Command";
+import Rover from "../entities/Rover";
+import CommandResponse from "../interfaces/CommandResponse";
 
-  constructor(rover:Rover) {
+class HistoryCommand implements ICommand {
+  public static commandName: string = "history";
+  public commandName: string = "history";
+  private rover: Rover;
+
+  constructor(rover: Rover) {
     this.rover = rover;
-    observe(rover.history, (change) => rover.io.sockets.emit('history_update', change.object.map((h:CommandResponse) => h.name) ))
+    observe(
+      rover.history,
+      (change) => rover.io.sockets.emit("history_update", change.object.map((h: CommandResponse) => h.name))
+    );
   }
-  exec(value:any, socket?:Socket, callback?:Function): CommandResponse | void {
-    const {rover} = this;
+  public exec(value: any, socket?: Socket, callback?: Function): CommandResponse | void {
     if (!callback) return;
+    const {rover} = this;
     callback(rover.history);
   }
 }

@@ -1,4 +1,4 @@
-export default interface CommandResponse {
-  undo: Function,
-  name: string
+export default interface ICommandResponse {
+  undo: Function;
+  name: string;
 }

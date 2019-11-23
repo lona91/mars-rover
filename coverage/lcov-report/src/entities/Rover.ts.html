@@ -365,7 +365,7 @@ class Rover implements Entity {
       }); 
             
       this.commands.forEach(command =&gt; {
-        fromEvent(socket, command.command_name)
+        fromEvent(socket, command.commandName)
           .pipe(takeUntil(this.disconnect$))
           .subscribe({
             next: (x:any) =&gt; {
@@ -394,7 +394,7 @@ class Rover implements Entity {
   private applyCommand(command:Command) {
     const sockets = this.io.sockets.sockets;
     for (var id in sockets) {
-      fromEvent(sockets[id], command.command_name)
+      fromEvent(sockets[id], command.commandName)
         .pipe(
           takeUntil(this.disconnect$)
         )
@@ -422,16 +422,16 @@ class Rover implements Entity {
   } 
 &nbsp;
   @action addCommand(Command:CommandClass) {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.commands.find(item =&gt; item.command_name === Command.command_name)) <span class="cstat-no" title="statement not covered" >return;</span>
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.commands.find(item =&gt; item.commandName === Command.commandName)) <span class="cstat-no" title="statement not covered" >return;</span>
     const c = new Command(this)
     this.commands.push(c);
     this.applyCommand(c);
   }
 &nbsp;
   @action removeCommand(command:CommandClass) {
-    this.commands = this.commands.filter(item =&gt; item.command_name !== command.command_name);
+    this.commands = this.commands.filter(item =&gt; item.commandName !== command.commandName);
     for (let id in this.io.sockets.sockets) {
-      this.io.sockets.sockets[id].removeAllListeners(command.command_name)
+      this.io.sockets.sockets[id].removeAllListeners(command.commandName)
     }
   }
   

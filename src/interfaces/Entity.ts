@@ -1,6 +1,6 @@
-import Position from './Position';
+import Position from "./Position";
 
-export default interface Entity {
-  position:Position,
-  solid:boolean;
+export default interface IEntity {
+  position: Position;
+  solid: boolean;
 }

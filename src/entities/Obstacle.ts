@@ -1,11 +1,11 @@
-import Entity from '../interfaces/Entity';
-import Position from '../interfaces/Position';
+import IEntity from "../interfaces/Entity";
+import IPosition from "../interfaces/Position";
 
-class Obstacle implements Entity {
-  position: Position;
-  solid: boolean;
+class Obstacle implements IEntity {
+  public position: IPosition;
+  public solid: boolean;
 
-  constructor(x:number, y:number) {
+  constructor(x: number, y: number) {
     this.solid = true;
     this.position = {x, y};
   }
