@@ -5,7 +5,8 @@
   "author": "Luca Lonati <info@atlas-software.it>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack --mode production & webpack --mode production --config ./src/frontend/webpack.config.js",
+    "build": "npm run test & npm run build:webpack &  npm run build:docs",
+    "build:webpack": "webpack --mode production & webpack --mode production --config ./src/frontend/webpack.config.js",
     "build:docker": "docker build .",
     "build:docs": "typedoc --mode file --theme minimal --out docs src",
     "test": "jest --coverage",
