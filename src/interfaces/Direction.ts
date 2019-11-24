@@ -1,3 +1,6 @@
+/**
+ * @description Direzioni cardinali
+ */
 enum Directions {
   North = 0,
   East = 1,

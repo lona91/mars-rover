@@ -7,14 +7,42 @@ import Position from "../interfaces/Position";
 import { Socket } from "socket.io";
 import ICommand from "../interfaces/Command";
 
-const allowedCommands = ["l", "r", "b", "f"];
-const directionMovements = [[0, -1], [1, 0], [0, 1], [-1, 0]];
-
+/**
+ * @description Classe che registra l'evento per la richiesta dei dati riguardanti la griglia e gli ostacoli
+ * presenti sulla griglia
+ */
 class MoveCommand implements ICommand {
+
+  /**
+   * @description Nome dell'evento da registrare
+   */
   public static commandName: string = "move";
+
+  /**
+   * @description Nome dell'evento da registrare
+   */
   public commandName: string = "move";
+
+  /**
+   * @description L'oggetto Rover su cui eseguire il comando
+   */
   private rover: Rover;
 
+  /**
+   * @description I parametri accettati dal comando
+   */
+  private allowedCommands = ["l", "r", "b", "f"];
+
+  /**
+   * @description Spostamento nei due assi relativamente alla direzione
+   */
+  private directionMovements = [[0, -1], [1, 0], [0, 1], [-1, 0]];
+
+  /**
+   * @constructor
+   * @description Crea un'oggetto di tipo MoveCommand
+   * @param rover L'oggetto Rover su cui eseguire il comando
+   */
   constructor(rover: Rover) {
     this.rover = rover;
   }
@@ -23,7 +51,7 @@ class MoveCommand implements ICommand {
     const [c, noHistory] = value;
     from(c.split(""))
       .pipe(
-        filter((command: string) => allowedCommands.indexOf(command) !== -1)
+        filter((command: string) => this.allowedCommands.indexOf(command) !== -1)
       )
       .subscribe({
         next: (x) => {
@@ -47,7 +75,7 @@ class MoveCommand implements ICommand {
               }
               break;
             case "f":
-              const deltaF = directionMovements[rover.position.direction];
+              const deltaF = this.directionMovements[rover.position.direction];
               const newPositionF: Position = rover.grid.normalize({
                 x: rover.position.x + deltaF[0],
                 y: rover.position.y + deltaF[1]
@@ -66,7 +94,7 @@ class MoveCommand implements ICommand {
               }
               break;
             case "b":
-              const deltaB = directionMovements[rover.position.direction].map((i: number) => -i);
+              const deltaB = this.directionMovements[rover.position.direction].map((i: number) => -i);
               const newPositionB: Position = rover.grid.normalize({
                 x: rover.position.x + deltaB[0],
                 y: rover.position.y + deltaB[1]

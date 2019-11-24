@@ -6,6 +6,9 @@ if (process.env.NODE_ENV !== "production") {
   loadEnv();
 }
 
+/**
+ * @description genera il logger
+ */
 export default createLogger({
   level: process.env.NODE_ENV === "test" ? "fatal" : process.env.LOG_LEVEL || "info" ,
   format: format.combine(
