@@ -5,6 +5,7 @@
   "author": "Luca Lonati <info@atlas-software.it>",
   "license": "MIT",
   "scripts": {
+    "build:docker": "docker build .",
     "test": "jest --coverage",
     "build": "webpack --mode production & webpack --mode production --config ./src/frontend/webpack.config.js",
     "start": "node dist/index.js",

@@ -1,0 +1,9 @@
+__test__
+jest.config.js
+*.log
+node_modules
+.env
+dist
+.vscode
+*.lock
+coverage
