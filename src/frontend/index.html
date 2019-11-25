@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <title>Mars Rover</title>
   <style>
     html, body {
@@ -11,14 +13,44 @@
       height: 100%;
       margin: 0;
       padding: 0;
+      overflow: hidden;
     }
     #app {
       width: 100%;
       height: 100%;
     }
+    #menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      
+    }
+    #menu a {
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;;
+        background: #6A7FDB;
+        color: white;
+
+      }
+    #menu a i {
+      padding: 0 10px;
+    }
+    #menu a:last-child {
+      background:#21A179;
+    }
   </style>
 </head>
 <body>
+  <header id="menu">
+    <a href="/docs" target="_blank"><i class="material-icons">
+        library_books
+        </i> Documentazione</a>
+    <a href="/test" target="_blank"><i class="material-icons">
+        verified_user
+        </i>Testing</a> 
+  </header>
   <main id="app"></main>
   <script src="/static/bundle.js"></script>
 </body>

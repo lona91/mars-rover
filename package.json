@@ -7,8 +7,8 @@
   "scripts": {
     "build": "npm run test & npm run build:webpack &  npm run build:docs",
     "build:webpack": "webpack --mode production & webpack --mode production --config ./src/frontend/webpack.config.js",
-    "build:docker": "docker build .",
-    "build:docs": "typedoc --mode file --theme minimal --out docs src",
+    "build:docker": "docker build -t mars-rover .",
+    "build:docs": "typedoc --exclude src/**/index.ts --mode file --theme minimal --out docs src",
     "test": "jest --coverage",
     "start": "node dist/index.js",
     "dev": "webpack -w --mode development & webpack -w --mode development --config ./src/frontend/webpack.config.js & nodemon dist/index.js",
