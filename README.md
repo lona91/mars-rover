@@ -1,4 +1,5 @@
-# MARS ROVER Exercies
+# MARS ROVER
+
 ## How to run
     npm install
     npm run build
